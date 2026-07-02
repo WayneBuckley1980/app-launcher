@@ -16,12 +16,12 @@
 
   <div class="layout">
     <aside class="sidebar">
-      <label class="label" for="app-select">Your apps</label>
-      <select id="app-select" class="select"></select>
+      <p class="label">Your apps</p>
+      <nav id="app-list" class="app-list" aria-label="Your apps"></nav>
       <button type="button" id="btn-new-app" class="btn btn-secondary btn-block">+ New app</button>
       <button type="button" id="btn-save-app" class="btn btn-primary btn-block">Save app</button>
       <button type="button" id="btn-download-json" class="btn btn-ghost btn-block">Download JSON</button>
-      <p class="hint">Apps save in this browser. Download JSON to back up or commit to the repo.</p>
+      <p class="hint">Apps are saved in this browser automatically when you click <strong>Save app</strong>. They stay here when you return.</p>
     </aside>
 
     <main class="main">
