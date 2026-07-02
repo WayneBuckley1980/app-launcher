@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App Launcher</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <h1>App Launcher</h1>
+      <p class="tagline">Launch &amp; market any app — no terminal needed</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <label class="label" for="app-select">Your apps</label>
+      <select id="app-select" class="select"></select>
+      <button type="button" id="btn-new-app" class="btn btn-secondary btn-block">+ New app</button>
+      <button type="button" id="btn-save-app" class="btn btn-primary btn-block">Save app</button>
+      <button type="button" id="btn-download-json" class="btn btn-ghost btn-block">Download JSON</button>
+      <p class="hint">Apps save in this browser. Download JSON to back up or commit to the repo.</p>
+    </aside>
+
+    <main class="main">
+      <nav class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="details">App details</button>
+        <button type="button" class="tab" data-tab="content">Posts</button>
+        <button type="button" class="tab" data-tab="links">Tracked links</button>
+        <button type="button" class="tab" data-tab="landing">Landing page</button>
+      </nav>
+
+      <!-- Details -->
+      <section id="panel-details" class="panel active">
+        <form id="app-form" class="form-grid">
+          <fieldset class="full">
+            <legend>Basics</legend>
+            <label>App name <input name="appName" required placeholder="DogSafe"></label>
+            <label>Slug (URL id) <input name="id" required pattern="[a-z0-9-]+" placeholder="dogsafe"></label>
+            <label>What problem does it solve? <textarea name="problem" rows="2"></textarea></label>
+            <label>Who is it for? <textarea name="targetAudience" rows="2"></textarea></label>
+            <label>What's different? <textarea name="differentiator" rows="2"></textarea></label>
+            <label>Geography <input name="geography" placeholder="UK"></label>
+          </fieldset>
+          <fieldset class="full">
+            <legend>Store listing</legend>
+            <label>Subtitle <input name="subtitle" placeholder="Plan safer walks for your dogs"></label>
+            <label>Short description <input name="shortDescription"></label>
+            <label>Keywords (comma-separated) <input name="keywords" placeholder="dog, walk, weather"></label>
+          </fieldset>
+          <fieldset class="full">
+            <legend>Features (one per line)</legend>
+            <textarea name="featureBullets" rows="5" placeholder="Breed-aware safety&#10;Best walk windows"></textarea>
+          </fieldset>
+          <fieldset>
+            <legend>Pricing</legend>
+            <label>Model
+              <select name="monetization">
+                <option value="paid">Paid</option>
+                <option value="free">Free</option>
+                <option value="subscription">Subscription</option>
+                <option value="freemium">Freemium</option>
+              </select>
+            </label>
+            <label>Price (£) <input name="priceGBP" type="number" step="0.01" min="0"></label>
+          </fieldset>
+          <fieldset>
+            <legend>Stores</legend>
+            <label>App Store URL <input name="appStoreUrl" type="url" placeholder="https://apps.apple.com/app/id..."></label>
+            <label>Google Play URL <input name="playStoreUrl" type="url"></label>
+            <label class="checkbox"><input name="androidLive" type="checkbox"> Android live on Play Store</label>
+            <label>Landing page URL <input name="landingPageUrl" type="url" placeholder="https://...github.io/.../dogsafe/"></label>
+          </fieldset>
+          <fieldset class="full">
+            <legend>Other</legend>
+            <label>Footer / disclaimer <input name="footerLine" placeholder="Not professional advice."></label>
+          </fieldset>
+        </form>
+        <button type="button" id="btn-generate" class="btn btn-primary btn-lg">Generate posts &amp; links</button>
+      </section>
+
+      <!-- Content -->
+      <section id="panel-content" class="panel">
+        <p class="panel-intro">Pick a platform, edit the draft, then copy and paste into Reddit, Instagram, etc.</p>
+        <div id="platform-pills" class="pills"></div>
+        <div class="content-toolbar">
+          <span id="content-label" class="content-label"></span>
+          <button type="button" id="btn-copy-content" class="btn btn-primary">Copy post</button>
+        </div>
+        <textarea id="content-output" class="content-output" rows="18" spellcheck="true"></textarea>
+      </section>
+
+      <!-- Links -->
+      <section id="panel-links" class="panel">
+        <p class="panel-intro">Share the <strong>landing page</strong> link in posts — it tracks which channel worked.</p>
+        <div id="links-list" class="links-list"></div>
+      </section>
+
+      <!-- Landing -->
+      <section id="panel-landing" class="panel">
+        <p class="panel-intro">Public page for this app. Deploy via <code>npm run deploy</code> after generating in the repo.</p>
+        <div class="landing-actions">
+          <a id="landing-open" class="btn btn-primary" href="#" target="_blank" rel="noopener">Open landing page</a>
+        </div>
+        <iframe id="landing-preview" class="landing-preview" title="Landing preview"></iframe>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" hidden>Copied!</div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

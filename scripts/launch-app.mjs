@@ -25,7 +25,10 @@ async function main() {
   const saveFlag = args.save !== false ? '--save' : '';
   run(`node scripts/generate-links.mjs --app ${slug} --source ${source} ${saveFlag}`.trim());
 
+  run(`node scripts/generate-content.mjs --app ${slug}`);
+
   console.log('\n--- Ready to market ---');
+  console.log(`Content:   campaigns/${slug}/content/generated/`);
   console.log(`Checklist: campaigns/${slug}/launch-checklist.md`);
   console.log(`Links:     campaigns/${slug}/links/${source}-launch.md`);
   console.log(`Preview:   docs/${slug}/index.html`);

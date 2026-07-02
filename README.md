@@ -1,99 +1,64 @@
 # App Launcher
 
-An **App Growth Platform** for indie developers. Add **any** app, answer a few questions, and get AI-generated marketing assets, launch checklists, and (eventually) campaign analytics.
+An **App Growth Platform** for indie developers. Add **any** app, generate marketing posts, tracked links, and landing pages — **from a web dashboard**, no terminal required for day-to-day marketing.
 
-**This repo is separate from your app codebases.** DogSafe is registered as one example (`apps/dogsafe.json`). It is live on iOS — App Launcher does not modify what paying customers already have.
+**This repo is separate from your app codebases.** DogSafe is one registered example. App Launcher does not modify shipped apps.
 
 See [docs/BOUNDARIES.md](docs/BOUNDARIES.md) for rules about live apps.
 
-## Architecture
+## Use the web dashboard (recommended)
+
+**Online (after deploy):**  
+https://waynebuckley1980.github.io/app-launcher/app-launcher/
+
+**On your Mac:**
+```bash
+cd ~/Projects/AppLauncher
+npm run dev
+```
+Open **http://localhost:3456/dashboard/**
+
+### What you do in the browser
+
+1. **Select an app** (e.g. DogSafe) or click **+ New app**
+2. Fill in **App details** — problem, audience, features, store URLs
+3. Click **Generate posts & links**
+4. Open the **Posts** tab → pick Reddit, Instagram, Facebook… → **Copy post**
+5. Paste into that platform and publish
+
+Apps save in your browser automatically. Use **Download JSON** to back up or add to `apps/` in the repo.
+
+## Architecture (vision)
 
 ```
-                  App Growth Platform
-
-        ┌─────────────────────────────────┐
-        │ Admin Dashboard                 │
-        │ • Add new apps                  │
-        │ • AI marketing                  │
-        │ • Analytics                     │
-        │ • Campaigns                     │
-        └─────────────────────────────────┘
-                     │
-        ┌─────────────────────────────────┐
-        │ Marketing API                   │
-        │ • Apps                          │
-        │ • Campaigns                     │
-        │ • Social content                │
-        │ • Referrals                     │
-        │ • Downloads                     │
-        └─────────────────────────────────┘
-                     │
-      ┌──────────────┼──────────────────────┐
-      │              │                      │
-   App #1         App #2               App #3
- (e.g. DogSafe)   (your next app)     (future)
+Admin Dashboard (web)  →  App registry  →  Any app you build
+                       →  Generated posts, links, landing pages
 ```
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full details.
-
-## Workflow (any new app)
-
-1. Finish a new app in its own repo.
-2. Add it to the registry (`apps/your-app.json`) or dashboard.
-3. AI asks: problem solved, audience, what's new.
-4. Generates: social posts, blog drafts, press releases, store copy, email content.
-5. You review and approve.
-6. Track which channels drive installs.
+CLI tools remain for developers who want automation — the dashboard uses the same engine.
 
 ## Docs
 
 | Doc | Description |
 |---|---|
-| [BOUNDARIES.md](docs/BOUNDARIES.md) | **Live apps — do not harm paying users** |
-| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design and API surface |
-| [ROADMAP.md](docs/ROADMAP.md) | Four-phase build plan |
-| [PLATFORM-LIMITS.md](docs/PLATFORM-LIMITS.md) | What can/cannot be automated on social |
+| [BOUNDARIES.md](docs/BOUNDARIES.md) | Live apps — do not harm paying users |
+| [DEPLOY.md](docs/DEPLOY.md) | GitHub Pages deploy |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design |
+| [ROADMAP.md](docs/ROADMAP.md) | Build plan |
 
-## App registry
-
-| App | Status | Notes |
-|---|---|---|
-| DogSafe | Live (iOS) | Example only; marketing reference — [apps/dogsafe.json](apps/dogsafe.json) |
-
-Add a row here for each new app. See [apps/README.md](apps/README.md).
-
-## Status
-
-**Phase 1 (in progress)** — CLI tools for onboarding, landing pages, and UTM links.
-
-All implementation happens in **this repo**. App repos stay independent.
-
-## Quick start
-
-```bash
-# Add a new app (interactive)
-npm run add-app
-
-# DogSafe — already registered; generate landing + links
-npm run launch -- --app dogsafe --source reddit
-
-# Preview landing page
-open sites/dogsafe/index.html
-
-# Channel-specific links
-npm run generate-links -- --app dogsafe --source facebook --save
-```
-
-Deploy landing pages: [docs/DEPLOY.md](docs/DEPLOY.md) or `npm run deploy`
-
-## CLI commands
+## CLI (optional)
 
 | Command | Description |
 |---|---|
-| `npm run add-app` | Interactive onboarding → `apps/{slug}.json` + checklist |
-| `npm run generate-landing -- --app <slug>` | Build `sites/{slug}/index.html` |
-| `npm run generate-links -- --app <slug> --source <channel> [--save]` | UTM-tracked URLs |
-| `npm run launch -- --app <slug> [--source reddit]` | Landing + links in one step |
-| `npm run market -- --app <slug>` | All channel links + content folder |
+| `npm run dev` | Local web dashboard |
+| `npm run deploy` | Push landing pages + dashboard to GitHub |
+| `npm run add-app` | Register app via terminal |
+| `npm run generate-content -- --app <slug>` | Export posts to files |
 
-**Marketing a registered app:** see `campaigns/{slug}/MARKETING.md` (DogSafe: `campaigns/dogsafe/MARKETING.md`).
+## App registry
+
+| App | Status |
+|---|---|
+| DogSafe | Live (iOS) — [apps/dogsafe.json](apps/dogsafe.json) |
+
+Add apps in the dashboard or `npm run add-app`.

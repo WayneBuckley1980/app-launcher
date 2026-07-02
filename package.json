@@ -10,6 +10,9 @@
     "generate-landing": "node scripts/generate-landing.mjs",
     "launch": "node scripts/launch-app.mjs",
     "market": "node scripts/market-app.mjs",
+    "generate-content": "node scripts/generate-content.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "sync-web": "node scripts/sync-web.mjs",
     "deploy": "bash scripts/deploy-github-pages.sh"
   },
   "engines": {

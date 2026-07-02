@@ -86,13 +86,14 @@ https://waynebuckley1980.github.io/app-launcher/dogsafe/?utm_source=reddit&utm_m
 
 ## Content drafts (review before posting)
 
-All in `content/` — edit to sound like you, not a advert.
+**Generate all platforms:**
+```bash
+npm run generate-content -- --app dogsafe
+```
 
-- `reddit-flat-faced-breeds.md` — heat + brachycephalic angle
-- `reddit-multi-dog.md` — household with multiple dogs
-- `reddit-indie-dev.md` — builder story for r/sideproject
-- `facebook-group.md` — short, friendly, UK tone
-- `communities-to-try.md` — subreddits and groups to research
+Files appear in `content/generated/` — Reddit, Instagram, Facebook, LinkedIn, X, email.
+
+Older hand-written examples remain in `content/` for reference.
 
 ---
 

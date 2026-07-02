@@ -16,6 +16,9 @@ echo "App Launcher — deploy to GitHub Pages"
 echo "Remote: $REMOTE"
 echo ""
 
+echo "→ Syncing web dashboard to docs/..."
+node scripts/sync-web.mjs
+
 echo "→ Regenerating DogSafe landing page..."
 node scripts/generate-landing.mjs --app dogsafe
 
@@ -51,6 +54,9 @@ echo "  1. Open: https://github.com/${USER}/${REPO}/settings/pages"
 echo "  2. Source: Deploy from branch"
 echo "  3. Branch: main  ·  Folder: /docs"
 echo "  4. Save — wait ~2 minutes"
+echo ""
+echo "  Dashboard:"
+echo "  https://${USER}.github.io/${REPO}/app-launcher/"
 echo ""
 echo "  DogSafe landing page:"
 echo "  https://${USER}.github.io/${REPO}/dogsafe/"
