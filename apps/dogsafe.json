@@ -18,7 +18,8 @@
   },
   "google": {
     "packageName": "com.dogsafe.app",
-    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dogsafe.app"
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dogsafe.app",
+    "liveOnStore": false
   },
   "listingMetadataPath": "../DogSafe/store/listing-metadata.json",
   "marketing": {

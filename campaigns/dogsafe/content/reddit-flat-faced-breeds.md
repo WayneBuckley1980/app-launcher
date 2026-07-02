@@ -23,7 +23,7 @@ I ended up building a small walk planner called **DogSafe** (£2.99 one-off, no 
 
 It's not vet advice — I still do the hand test on pavement — but it's saved me from a few bad timing decisions this summer.
 
-iOS: [paste landing page link from links/reddit-launch.md]
+iOS only for now (Android coming soon): [paste landing page link from links/reddit-launch.md]
 
 Happy to answer questions about how the heat/pavement bit works. If this isn't allowed here, mods please delete — not trying to spam.
 

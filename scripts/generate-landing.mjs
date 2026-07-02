@@ -54,7 +54,11 @@ function extractFeatures(app) {
 function buildPriceLine(app) {
   if (app.monetization === 'free') return 'Free download';
   if (app.monetization === 'subscription') return 'Subscription app';
-  if (app.priceGBP != null) return `<strong>£${app.priceGBP.toFixed(2)}</strong> — one-time purchase, no subscription`;
+  if (app.priceGBP != null) {
+    const iosOnly = app.google?.liveOnStore !== true;
+    const suffix = iosOnly ? ' · <span style="color:var(--muted)">iPhone only — Android coming soon</span>' : '';
+    return `<strong>£${app.priceGBP.toFixed(2)}</strong> — one-time purchase, no subscription${suffix}`;
+  }
   return '';
 }
 
@@ -67,7 +71,7 @@ function buildStoreButtons(app) {
     );
   }
 
-  if (app.google?.playStoreUrl) {
+  if (app.google?.playStoreUrl && app.google?.liveOnStore === true) {
     buttons.push(
       `<a class="store-btn secondary" href="${escapeHtml(app.google.playStoreUrl)}" rel="noopener">Get it on Google Play</a>`
     );
