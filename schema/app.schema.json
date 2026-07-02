@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://app-launcher.local/schema/app.schema.json",
+  "title": "App",
+  "description": "Registry entry for an app in the App Launcher platform",
+  "type": "object",
+  "required": ["id", "appName", "repoPath", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable slug, e.g. dogsafe"
+    },
+    "appName": {
+      "type": "string"
+    },
+    "repoPath": {
+      "type": "string",
+      "description": "Relative path to app source repo from AppLauncher root"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planning", "development", "live", "sunset"]
+    },
+    "priceGBP": {
+      "type": "number"
+    },
+    "monetization": {
+      "type": "string",
+      "enum": ["paid", "subscription", "freemium", "iap", "free"]
+    },
+    "targetAudience": {
+      "type": "string"
+    },
+    "problem": {
+      "type": "string",
+      "description": "What problem does it solve?"
+    },
+    "differentiator": {
+      "type": "string"
+    },
+    "apple": {
+      "type": "object",
+      "properties": {
+        "ascAppId": { "type": "string" },
+        "bundleId": { "type": "string" },
+        "appStoreConnectUrl": { "type": "string", "format": "uri" }
+      }
+    },
+    "google": {
+      "type": "object",
+      "properties": {
+        "packageName": { "type": "string" }
+      }
+    },
+    "listing": {
+      "type": "object",
+      "description": "Store listing copy; may mirror store/listing-metadata.json in app repo",
+      "properties": {
+        "subtitle": { "type": "string" },
+        "promotionalText": { "type": "string" },
+        "shortDescription": { "type": "string" },
+        "fullDescription": { "type": "string" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "privacyPolicyUrl": { "type": "string", "format": "uri" },
+        "supportEmail": { "type": "string", "format": "email" }
+      }
+    },
+    "marketing": {
+      "type": "object",
+      "properties": {
+        "landingPageUrl": { "type": ["string", "null"], "format": "uri" },
+        "primaryChannels": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "accountStrategy": {
+          "type": "string",
+          "enum": ["developer-brand", "dedicated-app", "both"]
+        }
+      }
+    },
+    "listingMetadataPath": {
+      "type": "string",
+      "description": "Path to listing-metadata.json in app repo, if not inlined"
+    }
+  }
+}

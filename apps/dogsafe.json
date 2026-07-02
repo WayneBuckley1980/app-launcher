@@ -1,0 +1,25 @@
+{
+  "id": "dogsafe",
+  "appName": "DogSafe",
+  "repoPath": "../DogSafe",
+  "status": "live",
+  "priceGBP": 2.99,
+  "monetization": "paid",
+  "problem": "Dog owners need more than a weather check — breed-specific safety, pavement heat, and when to walk today.",
+  "targetAudience": "UK dog owners who walk daily; especially multi-dog households and flat-faced breed owners.",
+  "differentiator": "Pay once, no subscription. Multi-dog verdicts, 24-hour walk windows, pavement/UV/winter hazards.",
+  "apple": {
+    "ascAppId": "6783847517",
+    "bundleId": "com.dogsafe.app",
+    "appStoreConnectUrl": "https://appstoreconnect.apple.com/apps/6783847517"
+  },
+  "google": {
+    "packageName": "com.dogsafe.app"
+  },
+  "listingMetadataPath": "../DogSafe/store/listing-metadata.json",
+  "marketing": {
+    "landingPageUrl": null,
+    "primaryChannels": ["reddit", "facebook-groups", "app-store-search"],
+    "accountStrategy": "developer-brand"
+  }
+}
