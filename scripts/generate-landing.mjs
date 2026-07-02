@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { join } from 'node:path';
+import { readFile, writeFile, mkdir, copyFile, access } from 'node:fs/promises';
+import { join, resolve, extname } from 'node:path';
 import {
   parseArgs,
   loadAppEnriched,
@@ -98,6 +98,76 @@ function replaceAll(template, vars) {
   return out;
 }
 
+async function fileExists(path) {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function copyLandingAssets(app, outDir) {
+  const assets = app.marketing?.assets;
+  const captions = app.listing?.screenshotCaptions || [];
+  let iconRel = null;
+  const screenshots = [];
+
+  if (!assets) return { iconRel, screenshots };
+
+  const imagesDir = join(outDir, 'images');
+  await mkdir(imagesDir, { recursive: true });
+
+  if (assets.iconPath) {
+    const src = resolve(getRoot(), assets.iconPath);
+    if (await fileExists(src)) {
+      const ext = extname(src) || '.png';
+      iconRel = `images/icon${ext}`;
+      await copyFile(src, join(outDir, iconRel));
+    }
+  }
+
+  const shots = assets.screenshots || [];
+  for (let i = 0; i < shots.length; i++) {
+    const shot = typeof shots[i] === 'string' ? { path: shots[i] } : shots[i];
+    const src = resolve(getRoot(), shot.path);
+    if (!(await fileExists(src))) continue;
+
+    const ext = extname(src) || '.png';
+    const rel = `images/screen-${i + 1}${ext}`;
+    await copyFile(src, join(outDir, rel));
+    screenshots.push({
+      src: rel,
+      caption: shot.caption || captions[i] || '',
+    });
+  }
+
+  return { iconRel, screenshots };
+}
+
+function buildAppIconHtml(iconRel, appName) {
+  if (!iconRel) return '';
+  return `<img class="app-icon" src="${escapeHtml(iconRel)}" alt="${escapeHtml(appName)} app icon" width="88" height="88">`;
+}
+
+function buildScreenshotsHtml(screenshots) {
+  if (!screenshots.length) return '';
+
+  const items = screenshots
+    .map(
+      (s) => `<figure class="shot">
+        <img src="${escapeHtml(s.src)}" alt="${escapeHtml(s.caption || 'App screenshot')}" loading="lazy" width="200">
+        ${s.caption ? `<figcaption>${escapeHtml(s.caption)}</figcaption>` : ''}
+      </figure>`
+    )
+    .join('\n      ');
+
+  return `<section class="screenshots-section">
+      <h2>Screenshots</h2>
+      <div class="screenshots">${items}</div>
+    </section>`;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const slug = args.app || args._[0];
@@ -110,6 +180,11 @@ async function main() {
   const config = await loadLauncherConfig();
   const app = await loadAppEnriched(slug);
   const template = await readFile(join(getRoot(), 'templates', 'landing.html'), 'utf8');
+
+  const outDir = docsPath(slug);
+  await mkdir(outDir, { recursive: true });
+
+  const { iconRel, screenshots } = await copyLandingAssets(app, outDir);
 
   const subtitle =
     app.listing?.subtitle ||
@@ -137,6 +212,11 @@ async function main() {
   const supportEmail = app.listing?.supportEmail || '';
   const footerLine = app.marketing?.footerLine || app.appName;
 
+  const landingPageUrl = `${config.siteBaseUrl.replace(/\/$/, '')}/${slug}/`;
+  const ogImage = iconRel
+    ? `<meta property="og:image" content="${escapeHtml(`${landingPageUrl}${iconRel}`)}">`
+    : '';
+
   const html = replaceAll(template, {
     APP_NAME: escapeHtml(app.appName),
     SUBTITLE: escapeHtml(subtitle),
@@ -150,14 +230,13 @@ async function main() {
     FOOTER_LINE: escapeHtml(footerLine),
     PRIVACY_URL: escapeHtml(privacyUrl),
     SUPPORT_EMAIL: escapeHtml(supportEmail),
+    APP_ICON: buildAppIconHtml(iconRel, app.appName),
+    SCREENSHOTS_SECTION: buildScreenshotsHtml(screenshots),
+    OG_IMAGE: ogImage,
   });
 
-  const outDir = docsPath(slug);
-  await mkdir(outDir, { recursive: true });
   const outPath = join(outDir, 'index.html');
   await writeFile(outPath, html, 'utf8');
-
-  const landingPageUrl = `${config.siteBaseUrl.replace(/\/$/, '')}/${slug}/`;
 
   const registryApp = await loadApp(slug);
   registryApp.marketing = {
@@ -174,10 +253,9 @@ async function main() {
   await saveApp(slug, registryApp);
 
   console.log(`\n✓ Landing page: docs/${slug}/index.html`);
+  if (iconRel) console.log(`✓ App icon: docs/${slug}/${iconRel}`);
+  if (screenshots.length) console.log(`✓ Screenshots: ${screenshots.length} copied`);
   console.log(`✓ Landing URL (after deploy): ${landingPageUrl}`);
-  console.log('\nNext:');
-  console.log(`  npm run generate-links -- --app ${slug} --source reddit --save`);
-  console.log(`  Open docs/${slug}/index.html in a browser to preview`);
 }
 
 main().catch((err) => {

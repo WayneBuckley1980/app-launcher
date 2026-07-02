@@ -76,6 +76,7 @@ export function mergeAppWithListing(app, listing) {
       keywords: listing.keywords,
       privacyPolicyUrl: listing.privacyPolicyUrl,
       supportEmail: listing.supportEmail,
+      screenshotCaptions: listing.screenshotCaptions,
     },
     apple: {
       ...app.apple,

@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="App Launcher">
+  <meta name="theme-color" content="#151b24">
   <title>App Launcher</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -21,7 +24,12 @@
       <button type="button" id="btn-new-app" class="btn btn-secondary btn-block">+ New app</button>
       <button type="button" id="btn-save-app" class="btn btn-primary btn-block">Save app</button>
       <button type="button" id="btn-download-json" class="btn btn-ghost btn-block">Download JSON</button>
-      <p class="hint">Apps are saved in this browser automatically when you click <strong>Save app</strong>. They stay here when you return.</p>
+      <div id="phone-access" class="phone-access" hidden>
+        <p class="label">Open on your phone</p>
+        <p class="phone-url" id="phone-url"></p>
+        <button type="button" id="btn-copy-phone-url" class="btn btn-ghost btn-block">Copy link</button>
+      </div>
+      <p class="hint">Apps are saved in this browser when you click <strong>Save app</strong>.</p>
     </aside>
 
     <main class="main">

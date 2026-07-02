@@ -449,10 +449,26 @@ function downloadJson() {
   a.click();
 }
 
+function setupPhoneAccess() {
+  const box = $('#phone-access');
+  const urlEl = $('#phone-url');
+  const dashboardUrl = IS_GITHUB_PAGES
+    ? `${location.origin}${location.pathname}`
+    : `${config.siteBaseUrl.replace(/\/$/, '')}/app-launcher/`;
+
+  if (box && urlEl) {
+    urlEl.textContent = dashboardUrl;
+    box.hidden = false;
+    $('#btn-copy-phone-url')?.addEventListener('click', () => copyText(dashboardUrl));
+  }
+}
+
 async function init() {
   await loadConfig();
   await loadRegistryApps();
   buildAppsState();
+
+  setupPhoneAccess();
 
   const savedActive = localStorage.getItem(ACTIVE_KEY);
   if (savedActive && apps[savedActive]) {

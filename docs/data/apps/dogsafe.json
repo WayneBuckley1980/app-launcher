@@ -26,10 +26,46 @@
     "subtitle": "Plan safer walks for your dogs",
     "shortDescription": "Breed-aware walk safety. Pavement heat, walk windows, no subscription.",
     "promotionalText": "Pay once, no subscription. Breed-aware walk safety, pavement heat, UV warnings, 24-hour walk windows, and alerts for every dog in your home.",
-    "keywords": ["dog", "walk", "weather", "heat", "pavement", "paw", "breed", "safety", "widget", "planner", "pet", "humidity"]
+    "keywords": [
+      "dog",
+      "walk",
+      "weather",
+      "heat",
+      "pavement",
+      "paw",
+      "breed",
+      "safety",
+      "widget",
+      "planner",
+      "pet",
+      "humidity"
+    ],
+    "screenshotCaptions": [
+      "Household safety verdict — all your dogs at a glance",
+      "Best walk windows for the next 24 hours",
+      "Breed, size, and age profiles for each dog",
+      "All walking surfaces, units, and smart alerts"
+    ]
   },
   "marketing": {
     "landingPageUrl": "https://waynebuckley1980.github.io/app-launcher/dogsafe/",
+    "assets": {
+      "iconPath": "../DogSafe/assets/images/icon.png",
+      "screenshots": [
+        {
+          "path": "../DogSafe/store/assets/screenshots/ios-6.7/01-home.png"
+        },
+        {
+          "path": "../DogSafe/store/assets/screenshots/ios-6.7/02-walk-times.png"
+        },
+        {
+          "path": "../DogSafe/store/assets/screenshots/ios-6.7/03-dogs.png"
+        },
+        {
+          "path": "../DogSafe/store/assets/screenshots/ios-6.7/04-settings.png"
+        }
+      ]
+    },
     "primaryChannels": [
       "reddit",
       "facebook-groups",
