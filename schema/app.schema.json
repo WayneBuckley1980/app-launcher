@@ -21,6 +21,10 @@
       "type": "string",
       "enum": ["planning", "development", "live", "sunset"]
     },
+    "liveOnStore": {
+      "type": "boolean",
+      "description": "If true, app is shipped and may have paying users. App Launcher must not modify the app repo without explicit user request. See docs/BOUNDARIES.md."
+    },
     "priceGBP": {
       "type": "number"
     },

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DogSafe — Plan safer walks for your dogs</title>
+  <meta name="description" content="Breed-aware walk safety. Pavement heat, walk windows, no subscription.">
+  <meta property="og:title" content="DogSafe — Plan safer walks for your dogs">
+  <meta property="og:description" content="Breed-aware walk safety. Pavement heat, walk windows, no subscription.">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --text: #f0f4f8;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.15);
+      --safe: #34d399;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+    .subtitle { font-size: 1.125rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .price { font-size: 0.95rem; color: var(--muted); margin-bottom: 2rem; }
+    .price strong { color: var(--text); }
+    .stores { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .store-btn:hover { transform: translateY(-1px); opacity: 0.95; }
+    .store-btn.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .store-btn.secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid #334155;
+    }
+    .features { list-style: none; margin-bottom: 2rem; }
+    .features li {
+      padding: 0.65rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .features li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--safe);
+    }
+    .features li strong { color: var(--text); }
+    footer {
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid #1e293b;
+      padding-top: 1.5rem;
+    }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="badge">No subscription</span>
+    <h1>DogSafe</h1>
+    <p class="subtitle">Plan safer walks for your dogs</p>
+    <p class="price"><strong>£2.99</strong> — one-time purchase, no subscription</p>
+
+    <div class="stores">
+      <a class="store-btn primary" href="https://apps.apple.com/app/id6783847517" rel="noopener">Download on the App Store</a>
+      <a class="store-btn secondary" href="https://play.google.com/store/apps/details?id=com.dogsafe.app" rel="noopener">Get it on Google Play</a>
+    </div>
+
+    <ul class="features">
+      <li>Breed-aware safety for every dog in your home</li>
+      <li>Best walk windows for the next 24 hours</li>
+      <li>Pavement heat, UV, and winter hazard warnings</li>
+      <li>Pay once — no subscription or ads</li>
+      <li>Dog profiles stay on your device</li>
+    </ul>
+
+    <footer>
+      <p>Safety estimates, not veterinary advice.</p>
+      <p style="margin-top:0.5rem">
+        <a href="https://waynebuckley1980.github.io/dogsafe/">Privacy</a>
+        · <a href="mailto:wayne.buckley@hotmail.co.uk">Support</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

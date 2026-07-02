@@ -2,7 +2,9 @@
 
 ## Overview
 
-App Launcher is an AI-first App Growth Platform. It is **not** tied to a single app — DogSafe is the first consumer.
+App Launcher is an AI-first App Growth Platform for **launching any new app**. Each app lives in its own repo; App Launcher holds marketing metadata, campaigns, and tooling shared across the portfolio.
+
+DogSafe appears in the registry as a **live example** only. Building App Launcher must not require changes to DogSafe’s shipped app or paid-user experience. See [BOUNDARIES.md](BOUNDARIES.md).
 
 ## Components
 
@@ -35,18 +37,14 @@ App Launcher is an AI-first App Growth Platform. It is **not** tied to a single 
 ## AI-first prompts (examples)
 
 - "Launch my new budgeting app over the next 30 days."
-- "Promote DogSafe to first-time dog owners in the UK."
+- "Promote my fitness app to gym-goers in the UK."
 - "Create a week's worth of LinkedIn posts about my business app."
 - "Rewrite this announcement for Instagram."
 - "Suggest five communities where this app would be relevant."
 
 ## Cross-promotion (Phase 4)
 
-As the portfolio grows, apps can recommend related apps:
-
-- DogSafe → future hiking app (dog walkers)
-- Productivity app → another productivity tool
-- Unrelated audiences → no automatic cross-promo
+As the portfolio grows, apps can recommend **related** apps where audiences overlap. Unrelated apps do not cross-promote automatically.
 
 ## Account strategy
 
@@ -57,17 +55,19 @@ Support both:
 
 ## Data model (v0)
 
-See `schema/app.schema.json` and `apps/dogsafe.json`.
+See `schema/app.schema.json` and entries in `apps/`.
 
 Future: Postgres + Marketing API. Start with JSON files and scripts.
 
 ## Relationship to app repos
 
-Each app (e.g. DogSafe) keeps its own codebase. App Launcher holds:
+Each app keeps its **own codebase and store listing**. App Launcher holds:
 
 - Marketing metadata and campaigns
 - Generated content drafts
 - Analytics and attribution
 - Launch tooling shared across apps
 
-DogSafe's `store/listing-metadata.json` is the prototype for the `Apps` schema.
+**Read-only by default:** For live apps, App Launcher may reference paths like `listingMetadataPath` but must not write back to the app repo without explicit user action in that repo.
+
+The `store/listing-metadata.json` pattern (used in DogSafe) is a convenient prototype for the `Apps` schema — not a requirement to merge or migrate live app data.

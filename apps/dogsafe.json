@@ -3,23 +3,43 @@
   "appName": "DogSafe",
   "repoPath": "../DogSafe",
   "status": "live",
+  "liveOnStore": true,
   "priceGBP": 2.99,
   "monetization": "paid",
+  "geography": "UK",
   "problem": "Dog owners need more than a weather check — breed-specific safety, pavement heat, and when to walk today.",
   "targetAudience": "UK dog owners who walk daily; especially multi-dog households and flat-faced breed owners.",
   "differentiator": "Pay once, no subscription. Multi-dog verdicts, 24-hour walk windows, pavement/UV/winter hazards.",
   "apple": {
     "ascAppId": "6783847517",
     "bundleId": "com.dogsafe.app",
+    "appStoreUrl": "https://apps.apple.com/app/id6783847517",
     "appStoreConnectUrl": "https://appstoreconnect.apple.com/apps/6783847517"
   },
   "google": {
-    "packageName": "com.dogsafe.app"
+    "packageName": "com.dogsafe.app",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dogsafe.app"
   },
   "listingMetadataPath": "../DogSafe/store/listing-metadata.json",
   "marketing": {
-    "landingPageUrl": null,
-    "primaryChannels": ["reddit", "facebook-groups", "app-store-search"],
-    "accountStrategy": "developer-brand"
-  }
+    "landingPageUrl": "https://waynebuckley1980.github.io/app-launcher/dogsafe/",
+    "primaryChannels": [
+      "reddit",
+      "facebook-groups",
+      "app-store-search"
+    ],
+    "accountStrategy": "developer-brand",
+    "accentColor": "#22c55e",
+    "accentSoft": "rgba(34, 197, 94, 0.15)",
+    "footerLine": "Safety estimates, not veterinary advice.",
+    "featureBullets": [
+      "Breed-aware safety for every dog in your home",
+      "Best walk windows for the next 24 hours",
+      "Pavement heat, UV, and winter hazard warnings",
+      "Pay once — no subscription or ads",
+      "Dog profiles stay on your device"
+    ],
+    "landingPagePath": "docs/dogsafe/index.html"
+  },
+  "_note": "Registry example only. liveOnStore: do not modify ../DogSafe app code or paid-user terms from App Launcher work."
 }
